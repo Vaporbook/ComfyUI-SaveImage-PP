@@ -1,0 +1,17 @@
+#  Edit the following fields to match your project
+
+[project]
+name = "ComfyUI-SaveImage-PP"
+description = "A better SaveImage than SaveImage-Plus."
+version = "1.0.0"
+license = {file = "LICENSE"}
+dependencies = ["",]  # e.g.) ["numpy==1.18.1", ]
+
+[project.urls]
+Repository = "https://github.com/vaporbook/ComfyUI-SaveImage-PP"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = "vaporbook"
+DisplayName = "ComfyUI-SaveImage-PP"
+Icon = ""
