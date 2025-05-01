@@ -30,18 +30,18 @@ class SaveImagePP:
             "required": {
                 "images": ("IMAGE", ),
                 "filename_prefix": ("STRING", {"default": s.COMFYUI_PREFIX}),
-                "model_loader_id": ([s.MODEL_LOADER_CHECKPOINT_SIMPLE,s.MODEL_LOADER_NONE]),
+                "model_loader_id": ([s.MODEL_LOADER_DEFAULT, s.MODEL_LOADER_NONE], ),
                 "file_type": ([s.FILE_TYPE_PNG, s.FILE_TYPE_JPEG, s.FILE_TYPE_WEBP_LOSSLESS, s.FILE_TYPE_WEBP_LOSSY], ),
                 "remove_metadata": ("BOOLEAN", {"default": False}),
             },
             "hidden": {"prompt": "PROMPT", "extra_pnginfo": "EXTRA_PNGINFO"},
         }
 
-    def save_images(self, images, filename_prefix=COMFYUI_PREFIX, model_loader=MODEL_LOADER_DEFAULT, file_type=FILE_TYPE_PNG, remove_metadata=False, prompt=None, extra_pnginfo=None):
+    def save_images(self, images, filename_prefix=COMFYUI_PREFIX, model_loader_id=MODEL_LOADER_DEFAULT, file_type=FILE_TYPE_PNG, remove_metadata=False, prompt=None, extra_pnginfo=None):
         output_dir = folder_paths.get_output_directory()
         
         # TODO: expand the list to include other model loaders and the correct ref for each
-        if MODEL_LOADER == MODEL_LOADER_CHECKPOINT_SIMPLE:
+        if model_loader_id == s.MODEL_LOADER_CHECKPOINT_SIMPLE:
             model_ref = "CheckpointLoaderSimple.ckpt_name"
             filename_prefix += f"%{model_ref}%_"
 
