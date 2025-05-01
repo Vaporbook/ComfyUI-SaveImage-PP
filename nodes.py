@@ -29,7 +29,7 @@ class SaveImagePP:
         return {
             "required": {
                 "images": ("IMAGE", ),
-                "filename_prefix": ("STRING", {"default": COMFYUI_PREFIX}),
+                "filename_prefix": ("STRING", {"default": s.COMFYUI_PREFIX}),
                 "model_loader_id": ([s.MODEL_LOADER_CHECKPOINT_SIMPLE,s.MODEL_LOADER_NONE]),
                 "file_type": ([s.FILE_TYPE_PNG, s.FILE_TYPE_JPEG, s.FILE_TYPE_WEBP_LOSSLESS, s.FILE_TYPE_WEBP_LOSSY], ),
                 "remove_metadata": ("BOOLEAN", {"default": False}),
@@ -101,7 +101,7 @@ NODE_CLASS_MAPPINGS = {
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "SaveImagePP": "Save Image Plus Plus"
+    "SaveImagePP": "Save Image PP"
 }
 
 WEB_DIRECTORY = "web"
