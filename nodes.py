@@ -41,7 +41,7 @@ class SaveImagePP:
         output_dir = folder_paths.get_output_directory()
         
         # TODO: expand the list to include other model loaders and the correct ref for each
-        if model_loader_id == s.MODEL_LOADER_CHECKPOINT_SIMPLE:
+        if model_loader_id == self.MODEL_LOADER_CHECKPOINT_SIMPLE:
             model_ref = "CheckpointLoaderSimple.ckpt_name"
             filename_prefix += f"%{model_ref}%_"
 
