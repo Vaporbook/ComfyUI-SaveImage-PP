@@ -18,10 +18,10 @@ class SaveImagePP:
     FUNCTION = "save_images"
     OUTPUT_NODE = True
     CATEGORY = "image"
-	MODEL_LOADER_CHECKPOINT_SIMPLE = "CheckpointLoaderSimple"
-	MODEL_LOADER_NONE = "None"
-	MODEL_LOADER_DEFAULT = MODEL_LOADER_CHECKPOINT_SIMPLE 
-	COMFYUI_PREFIX = "%date:yyyy-MM-dd%/ComfyUI_%date:hhmmss%_"
+    MODEL_LOADER_CHECKPOINT_SIMPLE = "CheckpointLoaderSimple"
+    MODEL_LOADER_NONE = "None"
+    MODEL_LOADER_DEFAULT = MODEL_LOADER_CHECKPOINT_SIMPLE 
+    COMFYUI_PREFIX = "%date:yyyy-MM-dd%/ComfyUI_%date:hhmmss%_"
     PNG_COMPRESS_LEVEL = 4 
 
     @classmethod
@@ -30,7 +30,7 @@ class SaveImagePP:
             "required": {
                 "images": ("IMAGE", ),
                 "filename_prefix": ("STRING", {"default": COMFYUI_PREFIX}),
-				"model_loader_id": ([s.MODEL_LOADER_CHECKPOINT_SIMPLE,s.MODEL_LOADER_NONE]),
+                "model_loader_id": ([s.MODEL_LOADER_CHECKPOINT_SIMPLE,s.MODEL_LOADER_NONE]),
                 "file_type": ([s.FILE_TYPE_PNG, s.FILE_TYPE_JPEG, s.FILE_TYPE_WEBP_LOSSLESS, s.FILE_TYPE_WEBP_LOSSY], ),
                 "remove_metadata": ("BOOLEAN", {"default": False}),
             },
@@ -39,15 +39,15 @@ class SaveImagePP:
 
     def save_images(self, images, filename_prefix=COMFYUI_PREFIX, model_loader=MODEL_LOADER_DEFAULT, file_type=FILE_TYPE_PNG, remove_metadata=False, prompt=None, extra_pnginfo=None):
         output_dir = folder_paths.get_output_directory()
-		
-		# TODO: expand the list to include other model loaders and the correct ref for each
-		if MODEL_LOADER == MODEL_LOADER_CHECKPOINT_SIMPLE:
-			model_ref = "CheckpointLoaderSimple.ckpt_name"
-			filename_prefix += f"%{model_ref}%_"
+        
+        # TODO: expand the list to include other model loaders and the correct ref for each
+        if MODEL_LOADER == MODEL_LOADER_CHECKPOINT_SIMPLE:
+            model_ref = "CheckpointLoaderSimple.ckpt_name"
+            filename_prefix += f"%{model_ref}%_"
 
         full_output_folder, filename, counter, subfolder, _ = folder_paths.get_save_image_path(filename_prefix, output_dir, images[0].shape[1], images[0].shape[0])
         
-		extension = {
+        extension = {
             self.FILE_TYPE_PNG: "png",
             self.FILE_TYPE_JPEG: "jpg",
             self.FILE_TYPE_WEBP_LOSSLESS: "webp",
