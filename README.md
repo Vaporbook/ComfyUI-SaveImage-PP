@@ -1,6 +1,6 @@
 # ComfyUI-SaveImage-PP
 
-This is a better version of the natyive SaveImage node in ComfyUI. It updates the default naming convention (using date conventions and model names), and in keeping with previous efforts on a better save node, allows for saving in different formats (png still default), as well as turning off metadata if desired (default is on).
+This is a better version of the native SaveImage node in ComfyUI. It updates the default naming convention (using date conventions and model names), and in keeping with previous efforts on a better save node, allows for saving in different formats (png still default), as well as turning off metadata if desired (default is on).
 
 Credit where credit due: not a fork, but definitely owes [ComfyUI-SaveImage-Plus](https://github.com/Goktug/comfyui-saveimage-plus/tree/main) much gratitude. 
 

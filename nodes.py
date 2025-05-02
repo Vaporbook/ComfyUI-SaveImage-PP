@@ -21,7 +21,7 @@ class SaveImagePP:
     MODEL_LOADER_CHECKPOINT_SIMPLE = "CheckpointLoaderSimple"
     MODEL_LOADER_NONE = "None"
     MODEL_LOADER_DEFAULT = MODEL_LOADER_CHECKPOINT_SIMPLE 
-    COMFYUI_PREFIX = "%date:yyyy-MM-dd%/ComfyUI_%date:hhmmss%_"
+    COMFYUI_PREFIX = "%year%-%month%-%day%/ComfyUI_"
     PNG_COMPRESS_LEVEL = 4 
 
     @classmethod
@@ -41,12 +41,17 @@ class SaveImagePP:
         output_dir = folder_paths.get_output_directory()
         
         # TODO: expand the list to include other model loaders and the correct ref for each
+        model_ref = None
         if model_loader_id == self.MODEL_LOADER_CHECKPOINT_SIMPLE:
-            model_ref = "CheckpointLoaderSimple.ckpt_name"
-            filename_prefix += f"%{model_ref}%_"
+            print(prompt)
+            for node_id in prompt:
+                node = prompt[node_id]
+                if node['class_type'] == model_loader_id:
+                    model_ref = os.path.basename(node['inputs']['ckpt_name'])
+            filename_prefix += f"{model_ref}_"
 
         full_output_folder, filename, counter, subfolder, _ = folder_paths.get_save_image_path(filename_prefix, output_dir, images[0].shape[1], images[0].shape[0])
-        
+
         extension = {
             self.FILE_TYPE_PNG: "png",
             self.FILE_TYPE_JPEG: "jpg",
@@ -61,7 +66,7 @@ class SaveImagePP:
 
             kwargs = dict()
             if extension == "png":
-                kwargs["compress_level"] = PNG_COMPRESS_LEVEL
+                kwargs["compress_level"] = self.PNG_COMPRESS_LEVEL
                 if not remove_metadata and not args.disable_metadata:
                     metadata = PngInfo()
                     if prompt is not None:
