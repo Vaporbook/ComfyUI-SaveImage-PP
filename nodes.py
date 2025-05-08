@@ -43,7 +43,6 @@ class SaveImagePP:
         # TODO: expand the list to include other model loaders and the correct ref for each
         model_ref = None
         if model_loader_id == self.MODEL_LOADER_CHECKPOINT_SIMPLE:
-            print(prompt)
             for node_id in prompt:
                 node = prompt[node_id]
                 if node['class_type'] == model_loader_id:
